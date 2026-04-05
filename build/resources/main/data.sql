@@ -1,14 +1,11 @@
-/*
-CREATE TABLE Products (
-                id SERIAL PRIMARY KEY,
-                name VARCHAR(255) NOT NULL,
-                price float
-);
+-- Seed data for the products table.
+-- TRUNCATE clears all rows. The explicit RESTART resets H2's AUTO_INCREMENT
+-- sequence to 1, ensuring products receive predictable IDs (1, 2, 3) on
+-- every application start regardless of H2 version behaviour.
+TRUNCATE TABLE products;
+ALTER TABLE products ALTER COLUMN id RESTART WITH 1;
 
- */
-truncate table Products;
-
-INSERT INTO Products(`id`, `name`, `price`)
-values (1, 'User no 1',1),
-       (2, 'User no 2', 2),
-       (3, 'User no 3', 3);
+INSERT INTO products (name, price) VALUES
+    ('Wireless Headphones', 79.99),
+    ('Mechanical Keyboard', 129.99),
+    ('USB-C Hub', 49.99);
